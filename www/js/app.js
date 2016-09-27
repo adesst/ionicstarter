@@ -28,6 +28,10 @@ angular.module('starter', ['ionic','ui.router'])
         console.log("Run openLogin");
         $state.go('login', { reload:true});
     };       
+    $scope.openSignup = function(param){
+        console.log("Run openSignup " + param);
+        $state.go('signup', { reload:true});
+    };
 }])
 
 .controller('Home',['$scope','$state', function($scope, $state){

@@ -2,6 +2,12 @@
     <ion-content>
         <div class="list">
             it Works, Ryan
+            <button id="btnSignup" ng-click="openSignup">Signup</button>
         </div>
     </ion-content>
 </ion-view>
+<script>
+$("#btnSignup").click(function(){
+            angular.element("#Starter").scope().openSignup("test");
+        });
+</script>
