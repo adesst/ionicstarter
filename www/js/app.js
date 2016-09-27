@@ -51,10 +51,10 @@ angular.module('starter', ['ionic','ui.router'])
 
 .config( function($stateProvider, $urlRouterProvider){
     $stateProvider       
-        .state('/',{
-            url : '/',
-            templateUrl : 'templates/landedpage.html',
-        })
+        // .state('/',{
+        //     url : '/',
+        //     templateUrl : 'templates/landedpage.html',
+        // })
         .state('signup',{
             url : '/signup',
             templateUrl : 'templates/signup.html',
@@ -65,6 +65,6 @@ angular.module('starter', ['ionic','ui.router'])
             templateUrl : 'templates/login.html',
             controller : 'Login'
         });          
-    $urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/login');
 })
 

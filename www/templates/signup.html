@@ -1,7 +1,29 @@
-<ion-view title="Users">
-    <ion-content>
-        <div class="list">
-            its Signup, Ryan
-        </div>
-    </ion-content>
+<ion-header-bar class="bar-stable">
+        <h1 class="title">Sign Up</h1>
+        <div class="bar bar-header bar-positive">
+        <h1 class="title">Sign Up</h1>
+      </div>
+      </ion-header-bar>
+<ion-view title="Signup" hide-back-button="true" cache-view="false" nav-transition="none" id="pageSignup">
+    <ion-content padding="true" class="has-header">
+        <form id="signUp-form2" class="list">
+            <div class="spacer" style="width: 300px; height: 92px;"></div>
+            <ion-list id="signUp-list2">
+                <label class="item item-input" id="signUp-input3">
+                    <span class="input-label">Full Name</span>
+                    <input type="text" placeholder="">
+                </label>
+                <label class="item item-input" id="signUp-input4">
+                    <span class="input-label">Username</span>
+                    <input type="text" placeholder="">
+                </label>
+                <label class="item item-input" id="signUp-input5">
+                    <span class="input-label">Password</span>
+                    <input type="text" placeholder="">
+                </label>
+            </ion-list>
+            <button id="signUp-button3" class="button button-positive  button-block">Sign up</button>
+            <a ui-sref="login" id="signUp-button4" class="button button-stable  button-block">Already have an account?</a>
+        </form>
+        </ion-content>
 </ion-view>
