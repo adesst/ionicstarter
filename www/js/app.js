@@ -23,6 +23,9 @@ angular.module('starter', ['ionic','ui.router'])
   });
 })
 
+
+
+
 .controller('Starter',['$scope','$state', function($scope, $state){
     $scope.openLogin = function(user){
         console.log("Run openLogin");
@@ -32,6 +35,22 @@ angular.module('starter', ['ionic','ui.router'])
         console.log("Run openSignup " + param);
         $state.go('signup', { reload:true});
     };
+    
+    $scope.data = {};
+    $scope.submit = function(){
+        var link = 'http:/localhost/mydb1.php';
+ 
+        $http.post(link, {username : $scope.data.username}).then(function (res){
+            $scope.response = res.data;
+        });
+    };
+    // $scope.submit = function(){
+    //     var link = 'http://localhost/logintest.php';
+ 
+    //     $http.post(link, {username : $scope.data.username}).then(function (res){
+    //         $scope.response = res.data;
+    //     });
+    // };
 }])
 
 .controller('Home',['$scope','$state', function($scope, $state){
@@ -51,10 +70,11 @@ angular.module('starter', ['ionic','ui.router'])
 
 .config( function($stateProvider, $urlRouterProvider){
     $stateProvider       
-        // .state('/',{
-        //     url : '/',
-        //     templateUrl : 'templates/landedpage.html',
-        // })
+        .state('/',{
+            url : '/',
+            templateUrl : 'templates/landedpage.html',
+        })
+
         .state('signup',{
             url : '/signup',
             templateUrl : 'templates/signup.html',
@@ -64,7 +84,9 @@ angular.module('starter', ['ionic','ui.router'])
             url : '/login',
             templateUrl : 'templates/login.html',
             controller : 'Login'
-        });          
+        });    
+
+
     $urlRouterProvider.otherwise('/login');
 })
 

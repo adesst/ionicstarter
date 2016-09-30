@@ -2,25 +2,58 @@
     <h1 class="title">Login</h1>
 </ion-header-bar>
 <ion-view title="Login" hide-back-button="true" cache-view="false" nav-transition="none" id="pageLogin" style="background-color:#FFFFFF;">
-<ion-view title="Login">
-    <ion-content padding="true" class="has-header">
-          <form id="login-form1" class="list center-form">
-            <div class="spacer" style="width: 300px; height: 80px;"></div>
+    <ion-content padding="true" scroll="false" class="has-header">
+        <form id="login-form1" class="list center-form">
             <label class="item item-input" id="login-input1">
                 <span class="input-label">Username</span>
-                <input type="email" placeholder="">
+                <input name="login_username" type="email" placeholder="">
             </label>
             <label class="item item-input" id="login-input2">
                 <span class="input-label">Password</span>
-                <input type="password" placeholder="">
+                <input name="login_password" type="password" placeholder="">
+                </input>
             </label> 
             <button id="login-button1" class="button button-positive  button-block">Log in</button>
-            <a ui-sref="signUp" id="btnSignup" class="button button-positive  button-block button-clear">Or create an account</a>
-          </form>
-        </ion-content>
+            <a ui-sref="signup" id="btnSignup" class="button button-positive  button-block button-clear">Or create an account</a>
+        </form>
+    </ion-content>
 </ion-view>
+
+
 <script>
 $("#btnSignup").click(function(){
     angular.element("#Starter").scope().openSignup("test");
 });
+$("#login-button1").click(function(){
+    event.preventDefault();
+    $.ajax({
+        url : "http://localhost:80/login.php",
+        type: "POST",
+        async : false,
+        data : $("#login-form1").serialize() + "&submit=1",
+        success : function(success){
+            // alert("asd");
+            alert(success);
+            // msg = JSON.parse(msg);
+            // $(".errordialog .errorpan").html(msg.error_message);
+            // $(".errordialog").modal("show");
+
+            // if( msg.error == 0)
+            // {
+            //     setTimeout(function(){ window.location.reload(); }, 1500);
+            // }
+        },
+
+        error: function(err) {
+            alert(err);
+            console.log(err);
+        }
+    });
+});
 </script>
+
+
+
+
+
+
