@@ -9,6 +9,17 @@
                     <span class="input-label">Full Name</span>
                     <input name="signup_fullname" type="email" placeholder="">
                         </label>
+
+                        <label class="item item-input" id="signUp-input6">
+                    <span class="input-label">Phone</span>
+                    <input name="signup_phone" type="number" placeholder="">
+                        </label>
+
+                    <label class="item item-input" id="signUp-input7">
+                    <span class="input-label">Email</span>
+                    <input name="signup_email" type="email" placeholder="">
+                        </label>
+
                         <label class="item item-input" id="signUp-input4">
                         <span class="input-label">Username</span>
                     <input name="signup_username" type="email" placeholder="">
@@ -24,25 +35,41 @@
         </ion-content>
 </ion-view>
 
+
 <script>
+// $("#signUp-button4").click(function(){
+//     angular.element("#Starter").scope().openLogin("test");
+// });
+
+
     $("#signUp-button3").click(function(){
     event.preventDefault();
     $.ajax({
-        url : "http://localhost/signup.php",
+        url : "http://localhost/ionicstarter_server/signup.php",
         type: "POST",
         async : false,
         data : $("#signUp-form2").serialize() + "&submit=1",
-        success : function(success){
-            // alert("asd");
-            alert(success);
-            // msg = JSON.parse(msg);
-            // $(".errordialog .errorpan").html(msg.error_message);
-            // $(".errordialog").modal("show");
+        success : function(msg){
+            console.log(msg);
 
-            // if( msg.error == 0)
-            // {
-            //     setTimeout(function(){ window.location.reload(); }, 1500);
-            // }
+            msg=JSON.parse(msg);
+
+            var errorcode = msg['error'];
+            console.log(msg);
+
+            if (errorcode == 1) {
+                alert ('Record registered!');
+                angular.element('#Starter').scope().openLogin("test");
+            }
+            
+            else if (errorcode == 2) {
+                alert('Username already registered!');
+            }
+
+            else if (errorcode == 3) {
+                alert ('Please fill all the blank field!');
+            }
+
         },
 
         error: function(err) {

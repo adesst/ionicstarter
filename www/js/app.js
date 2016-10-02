@@ -27,30 +27,28 @@ angular.module('starter', ['ionic','ui.router'])
 
 
 .controller('Starter',['$scope','$state', function($scope, $state){
-    $scope.openLogin = function(user){
-        console.log("Run openLogin");
+
+    $scope.openLogin = function(param){
+        console.log("Run openLogin" + param);
         $state.go('login', { reload:true});
     };       
     $scope.openSignup = function(param){
         console.log("Run openSignup " + param);
         $state.go('signup', { reload:true});
     };
-    
-    $scope.data = {};
-    $scope.submit = function(){
-        var link = 'http:/localhost/mydb1.php';
- 
-        $http.post(link, {username : $scope.data.username}).then(function (res){
-            $scope.response = res.data;
-        });
+
+    $scope.openHome = function(param){
+        console.log("Run openHome" + param);
+        $state.go('home', {reload:true});
     };
-    // $scope.submit = function(){
-    //     var link = 'http://localhost/logintest.php';
- 
-    //     $http.post(link, {username : $scope.data.username}).then(function (res){
-    //         $scope.response = res.data;
-    //     });
-    // };
+
+    $scope.openEdit = function(param){
+        console.log("Run openEdit" + param);
+        $state.go('edit', {reload:true});
+    };
+
+
+
 }])
 
 .controller('Home',['$scope','$state', function($scope, $state){
@@ -64,15 +62,25 @@ angular.module('starter', ['ionic','ui.router'])
 }])
 
 .controller('Signup',['$scope','$state', function($scope, $state){
-
-
+    $("#bar-title").html("Signup");
 }])
+
+.controller('Edit',['$scope','$state', function($scope, $state){
+    $("#bar-title").html("Edit");
+}])
+
+
 
 .config( function($stateProvider, $urlRouterProvider){
     $stateProvider       
-        .state('/',{
-            url : '/',
-            templateUrl : 'templates/landedpage.html',
+        .state('home',{
+            url : '/home',
+            templateUrl : 'templates/home.html',
+        })
+
+        .state('edit',{
+            url : '/edit',
+            templateUrl : 'templates/edit.html',
         })
 
         .state('signup',{

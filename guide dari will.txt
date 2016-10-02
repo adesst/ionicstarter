@@ -1,0 +1,24 @@
+$("body").on("click",".submit", function(event){
+    event.preventDefault();
+
+    $.ajax({
+        url :			"http://jbox.salimagrochemical.com/applgeneral/master_fcast_fg_mingguan/add_fcast_header",
+        type: "POST",
+        async : false,
+        data : $("#form").serialize() + "&submit=1",
+        success : function(msg){
+
+            msg = JSON.parse(msg);
+            $(".errordialog .errorpan").html(msg.error_message);
+            $(".errordialog").modal("show");
+
+            if( msg.error == 0)
+            {
+                setTimeout(function(){ window.location.reload(); }, 1500);
+            }
+        },
+        error: function(err) {
+            alert(err);
+        }
+    });
+});

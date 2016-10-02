@@ -1,0 +1,74 @@
+<ion-header-bar class="bar-stable ">
+    <h1 class="title">Login</h1>
+</ion-header-bar>
+<ion-view title="Login" hide-back-button="true" cache-view="false" nav-transition="none" id="pageLogin" style="background-color:#FFFFFF;">
+    <ion-content padding="true" scroll="false" class="has-header">
+        <form id="login-form1" class="list center-form">
+            <label class="item item-input" id="login-input1">
+                <span class="input-label">Username</span>
+                <input name="login_username" type="email" placeholder="">
+            </label>
+            <label class="item item-input" id="login-input2">
+                <span class="input-label">Password</span>
+                <input name="login_password" type="password" placeholder="">
+                </input>
+            </label> 
+            <button id="login-button1" class="button button-positive  button-block">Log in</button>
+            <a ui-sref="signup" id="btnSignup" class="button button-positive  button-block button-clear">Or create an account</a>
+        </form>
+    </ion-content>
+</ion-view>
+
+
+<script>
+$("#btnSignup").click(function(){
+    angular.element("#Starter").scope().openSignup("test");
+});
+
+
+$("#login-button1").click(function(){
+    event.preventDefault();
+    $.ajax({
+        url : "http://localhost/login.php",
+        type: "POST",
+        async : false,
+        data : $("#login-form1").serialize() + "&submit=1",
+        success : function(msg){
+        console.log(msg);
+
+        msg=JSON.parse(msg);
+        alert(msg['error']);
+        var errorcode = msg['error'];
+        console.log(msg);
+
+        if (errorcode == 0) {
+            angular.element('#Starter').scope().openLandedpage("test");
+        }
+        else {
+            alert('Login Failed!');
+        }
+       // angular.element('#Starter').scope().openLandedpage("test");
+            // msg = JSON.parse(msg);
+            // $(".errordialog .errorpan").html(msg.error_message);
+            // $(".errordialog").modal("show");
+
+            // if( msg.error == 0)
+            // {
+            //     setTimeout(function(){ window.location.reload(); }, 1500);
+            // }
+        },
+
+        error: function(err) {
+            alert(err);
+            console.log(err);
+        }
+    });
+
+});
+</script>
+
+
+
+
+
+
